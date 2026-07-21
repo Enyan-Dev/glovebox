@@ -6,11 +6,11 @@ Glovebox is a lightweight desktop cloud client built with Python and CustomTkint
 
 ##  Features
 
-* Modern UI:** Clean, dark-mode friendly desktop application powered by CustomTkinter.
-* File Management:** Seamlessly upload local files directly to your cloud vault.
-* Direct Downloads & Deletes:** Independent controls for downloading or deleting specific file records.
-* Visual File Icons:** Automatically assigns dynamic file icons based on extension types (`.pdf`, `.png`, `.mp3`, `.py`, `.zip`, etc.).
-* PocketBase Integration:** Powered by REST APIs for fast metadata indexing and payload transfers.
+* Modern UI: Clean, dark-mode friendly desktop application powered by CustomTkinter.
+* File Management: Seamlessly upload local files directly to your cloud vault.
+* Direct Downloads & Deletes: Independent controls for downloading or deleting specific file records.
+* Visual File Icons: Automatically assigns dynamic file icons based on extension types (`.pdf`, `.png`, `.mp3`, `.py`, `.zip`, etc.).
+* PocketBase Integration: Powered by REST APIs for fast metadata indexing and payload transfers.
 
 ---
 
