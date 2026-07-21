@@ -1,0 +1,8 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Local PocketBase data & executables
+pb_data/
+pocketbase
+pocketbase.exe
