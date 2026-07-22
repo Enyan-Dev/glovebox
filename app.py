@@ -3,7 +3,7 @@ import customtkinter as ctk
 import requests
 
 ctk.set_appearance_mode("System")
-ctk.set_default_color_theme("blue")
+ctk.set_default_color_theme("green")
 
 class GloveboxApp(ctk.CTk):
     def __init__(self):
@@ -13,28 +13,28 @@ class GloveboxApp(ctk.CTk):
 
     #Window settings
         self.title("Glovebox")
-        self.geometry("550x550")
-    #UI Elements
+        self.geometry("550x600")
+        self.minsize(450,500)
+    #UI Header Title
         self.label = ctk.CTkLabel(self, text = "Glovebox Cloud Storage", font=("Arial", 20, "bold"))
         self.label.pack(pady=20)
 
     #File Selection Area
-        self.upload_btn = ctk.CTkButton(self, text="select & Upload File", command=self.upload_file)
-        self.upload_btn.pack(pady=10)
+        self.upload_btn = ctk.CTkButton(self, text="Select & Upload File", command=self.upload_file, height=36, font=("Arial", 13, "bold"))
+        self.upload_btn.pack(pady=10, padx=40, fill="x")
 
         self.file_info_label = ctk.CTkLabel(self, text="No file selected", text_color = "gray")
         self.file_info_label.pack(pady=10)
 
     #Divider
-        self.line = ctk.CTkLabel(self, text="----------------------------------------------------",text_color="gray")
-        self.line.pack(pady=5)
-
+        self.divider = ctk.CTkFrame(self, height=2, fg_color=("gray","gray30"))
+        self.divider.pack(fill="x", padx=30, pady=10)
     #Scrollable area for cloud files
         self.vault_label = ctk.CTkLabel(self, text="Files in your Cloud Vault:", font=("Arial", 14, "bold"))
         self.vault_label.pack(pady=5)
 
-        self.scroll_frame = ctk.CTkScrollableFrame(self, width=450, height= 220)
-        self.scroll_frame.pack(pady=10)
+        self.scroll_frame = ctk.CTkScrollableFrame(self)
+        self.scroll_frame.pack(pady=10, padx=20, fill="both", expand=True)
 
         self.status_label = ctk.CTkLabel(self, text= "Status: Ready", text_color="gray")
         self.status_label.pack(pady=15)
@@ -88,36 +88,42 @@ class GloveboxApp(ctk.CTk):
                     attachment_field = file_record.get("attachments","")
 
                     #Main item container row(card)
-                    row_frame = ctk.CTkFrame(self.scroll_frame)
-                    row_frame.pack(fill="x", padx=5, pady=5)
+                    row_frame = ctk.CTkFrame(
+                        self.scroll_frame,
+                        fg_color=("#c4c1c1","#2b2b2b"),
+                        corner_radius=8
+                    )
+                    row_frame.pack(fill="x", padx=5, pady=4)
 
                     #Delete Button
                     delete_btn = ctk.CTkButton(
                         row_frame,
                         text="🗑️",
-                        width=35,
+                        width=32,
+                        height = 28,
                         fg_color="#c92a2a",
                         hover_color="#a61e1e",
                         command=lambda r=record_id, fn=file_name: self.delete_file(r, fn)
                     )
-                    delete_btn.pack(side="right", padx=5, pady=5)
+                    delete_btn.pack(side="right", padx=(2,8), pady=5)
 
                       #Download Button
                     download_btn = ctk.CTkButton(
                         row_frame,
                         text="⏬",
-                        width=35,
+                        width=32,
+                        height=28,
                         fg_color="#2b8a3e",
                         hover_color="#216a30",
                         command= lambda r=record_id, fn=file_name, att= attachment_field: self.download_file(r, fn, att)
                     )
-                    download_btn.pack(side="right", padx=5, pady=5)
+                    download_btn.pack(side="right", padx=2, pady=5)
 
                     #Icon and details
                     icon = self.get_file_icon(file_name)
                     display_text = f"{icon} {file_name} ({file_size} KB)"
-                    file_info = ctk.CTkLabel(row_frame, text=display_text, font=("Arial", 13),anchor="w")
-                    file_info.pack(side="left", padx=10, expand=True, fill="x")
+                    file_info = ctk.CTkLabel(row_frame, text=display_text, font=("Segoe UI Emoji", 12, "bold"),anchor="w")
+                    file_info.pack(side="left", padx=12, pady=8 ,expand=True, fill="x")
 
             else:
                 error_label = ctk.CTkLabel(self.scroll_frame, text="Failed to fetch file index.", text_color="red")

@@ -1,8 +1,15 @@
-# Python cache
+# Python bytecode & cache
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
 
-# Local PocketBase data & executables
+# PocketBase local database & uploaded testing files
 pb_data/
-pocketbase
-pocketbase.exe
+pb_migrations/
+
+# OS store files
+.DS_Store
+Thumbs.db
